@@ -19,3 +19,7 @@ supabase db reset
 ```
 
 Copy `.env.example` to `.env.local` for an application client. The answer key tables have no authenticated grants; connections are checked by the `create_connection` RPC.
+
+## Frontend integration
+
+See [API.md](API.md) for client setup, authentication, helper functions, payload shapes, response types, and Supabase RPC/table mappings.
