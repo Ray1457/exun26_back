@@ -1,25 +1,32 @@
 # EXUN Investigator Portal Backend
 
-Supabase backend foundation for the Wenoti Arcade Anomaly case.
+Backend and data-access layer for the Wenoti Arcade Anomaly investigation. The
+project uses Supabase for authentication, storage, case data, and the evidence
+board.
 
-## Local checks
+## Getting started
 
 ```sh
 npm install
+npm run seed:build
 npm run typecheck
 npm test
-npm run seed:build
 ```
 
-The schema is in `supabase/migrations/0001_core.sql` and the deterministic case seed is in `supabase/seed.sql`. With the Supabase CLI installed, start the local stack and apply both with:
+The seed builder reads the source evidence in `prompt/` and updates
+`supabase/seed.sql`. To run the complete backend locally, install the Supabase
+CLI and use:
 
 ```sh
 supabase start
 supabase db reset
 ```
 
-Copy `.env.example` to `.env.local` for an application client. The answer key tables have no authenticated grants; connections are checked by the `create_connection` RPC.
+Copy `.env.example` to `.env.local` before connecting an application client.
+The answer key stays server-side; evidence-board connections are validated by
+the `create_connection` RPC.
 
 ## Frontend integration
 
-See [API.md](API.md) for client setup, authentication, helper functions, payload shapes, response types, and Supabase RPC/table mappings.
+The typed client helpers live in `lib/data`. See [API.md](API.md) for setup,
+authentication, payloads, response types, and the underlying Supabase calls.
